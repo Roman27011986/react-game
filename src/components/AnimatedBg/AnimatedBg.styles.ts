@@ -5,10 +5,10 @@ import styled from "styled-components";
 export const AnimatedBgStyle = styled(motion.div)<any>`
 position: fixed;
 z-index: -1;
-top: -5%;
-bottom: -5%;
-left: -5%;
-right: -5%;
+top: -10%;
+bottom: -10%;
+left: -10%;
+right: -10%;
 background-repeat: no-repeat;
 background-size: cover;
 background-image: url(${({$bgImg}) => !!$bgImg ? $bgImg : AppBgImg});

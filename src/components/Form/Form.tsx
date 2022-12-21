@@ -57,9 +57,18 @@ height: 100%;
 flex-direction: column;
 align-items: center;
 justify-content: space-between;
-padding: 37px 59px 29px 59px;
+/* padding: 37px 59px 29px 59px; */
+padding: 7% 59px 7% 59px;
 border-radius: 20px;
 background-color: white;
+
+ /* @media screen and (min-width: 480px) and (max-width: 767px){
+  padding: 27px 59px 19px 59px;
+   } */
+  
+  /* @media screen and (min-width: 768px) {
+     width: 730px;
+ } */
 `;
 
 const Ul = styled.ul`
