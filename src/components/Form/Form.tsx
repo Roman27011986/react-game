@@ -1,6 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
 import RadioBtnGroup from "../RadioBtnGroup/RadioBtnGroup";
-import styled from "styled-components";
 import SubmitBtn from "../Buttons/SubmitBtn";
 import ControlBtn from "../Buttons/ControlBtn";
 
@@ -34,6 +33,8 @@ import flower5 from "../../img/flowers/flower5.png";
 import useSound from 'use-sound';
 import clickEffeckt from "../../sounds/click.mp3"
 
+import { StyledForm, StyledFormList, StyledBtnWrpper, StyledFormListItem } from "./Form.styles";
+
 import { IOptions, IGameItem, FormProps } from "./Form.types";
 
 const gameTheme = [{
@@ -50,52 +51,6 @@ const gameTheme = [{
   dndItemsImg: [coin1, coin2, coin3, coin1, coin2]
 }
 ];
-
-const FormStyled = styled.form`
-display: flex;
-height: 100%;
-flex-direction: column;
-align-items: center;
-justify-content: space-between;
-/* padding: 37px 59px 29px 59px; */
-padding: 7% 59px 7% 59px;
-border-radius: 20px;
-background-color: white;
-
- /* @media screen and (min-width: 480px) and (max-width: 767px){
-  padding: 27px 59px 19px 59px;
-   } */
-  
-  /* @media screen and (min-width: 768px) {
-     width: 730px;
- } */
-`;
-
-const Ul = styled.ul`
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-width: 100%;
-height: 50%;
-`;
-
-const ControlBtnWrapper = styled.div`
-width: 100%;
-display: flex;
-justify-content: space-evenly;
-`;
-
-const RadioBtnGroupStyles = styled(RadioBtnGroup)`
-// &:not(:last-child) {
-//     margin-bottom: 40px;
-//   }
-`;
-
-const Li = styled.li`
-// &:not(:last-child) {
-//     margin-bottom: 54px;
-//   }
-`; 
 
 const radioBtnItems = [2, 3, 4, 5];
 
@@ -167,30 +122,33 @@ export default function Form({onGameStart}: FormProps) {
   };
 
     return (
-        <FormStyled onSubmit={handleSubmit}>
-            <Ul>
-                <Li>
-                  <RadioBtnGroupStyles 
+        <StyledForm onSubmit={handleSubmit}>
+            <StyledFormList>
+                <StyledFormListItem>
+                  <RadioBtnGroup 
                     title="Кол-во предметов" 
                     radioBtnSum={radioBtnItems} 
                     checked={itemChecked}
+                    width="70"
                     onHandleChange={handleItemChange}
                    />
-                </Li>
-                <Li>
-                  <RadioBtnGroupStyles 
+                </StyledFormListItem>
+                <StyledFormListItem>
+                  <RadioBtnGroup 
                     title="Значения" 
                     radioBtnSum={radioBtnValues} 
                     checked={valueChecked}
                     onHandleChange={handleValueChange}
                   />
-                </Li>
-            </Ul>
-            <ControlBtnWrapper>
-            <ControlBtn btnType="button" onHandleClick={toggleSequence} isDisabled={sequence}>По возростанию</ControlBtn>
-            <ControlBtn btnType="button" onHandleClick={toggleSequence} isDisabled={!sequence}>По убыванию</ControlBtn>
-            </ControlBtnWrapper>
+                </StyledFormListItem>
+            </StyledFormList>
+
+            <StyledBtnWrpper>
+              <ControlBtn btnType="button" onHandleClick={toggleSequence} isDisabled={sequence}>По возростанию</ControlBtn>
+              <ControlBtn btnType="button" onHandleClick={toggleSequence} isDisabled={!sequence}>По убыванию</ControlBtn>
+            </StyledBtnWrpper>
+
             <SubmitBtn btnType="submit">Играть</SubmitBtn>
-        </FormStyled>
+        </StyledForm>
     )
 };

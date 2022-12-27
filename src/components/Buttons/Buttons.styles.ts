@@ -4,7 +4,7 @@ import { ISoundBtn } from "./Buttons.types";
 
 export const SubmitBtnStyled = styled(motion.button)`
 border-radius: 20px;
-padding: 12px 77px 12px 77px;
+padding: 8px 77px 8px 77px;
 color: white;
 font-family: Helvetica;
 font-size: 32px;
@@ -16,6 +16,9 @@ filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `;
 
 export const ControlBtnStyled = styled(motion.button)`
+  max-width: 45%;
+  width: 100%;
+  
   padding: 3px 24px;
   border-radius: 20px;
 
@@ -25,6 +28,8 @@ export const ControlBtnStyled = styled(motion.button)`
   line-height: 39.06px;
 
   cursor: pointer;
+
+  color: #4F4B61;
   background-color: ${({theme}) => theme.colors.yellow};
 `;
 

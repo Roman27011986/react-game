@@ -1,54 +1,38 @@
-import { useState } from "react";
-import styled from "styled-components";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { useDrag } from "react-dnd";
 import { DndItem } from "../../types/dnd";
+import { getEmptyImage } from "react-dnd-html5-backend";
 
+import { StyledItemValue } from "../CustomDragLayer/CustomDragLayer.styles"; 
+import { StyledDragItem } from "./DragItem.styles";
 
-const Li = styled(motion.li)<any>`
-position: relative;
-display: flex;
-justify-content: center;
-align-items: center;
-padding: 10px;
-width: calc((100% - 3px * 5) / 6);
-height: calc((100% - 3px * 5) / 6);
-opacity: ${({$isDragging, $isDroped}) => $isDragging || $isDroped ? "0" : "0.9"};
-`;
-
-const Span = styled.span<any>`
-position: absolute;
-color: rgba(255, 255, 255, 1);
-
-font-family: Helvetica;
-font-size: 35px;
-font-weight: 800;
--webkit-text-stroke: 1.5px rgba(36, 37, 70, 1);
-`;
-
-const DragItem: React.FC<any> = ({dndItems, itemOpt, itemIdx}) => {
+export default function DragItem({dndItems, itemOpt, itemIdx}: any) {
     const [droped, setDroped] = useState(false);
- 
-    const [{ isDragging }, drag] = useDrag(() => ({
+
+    const [{ isDragging }, drag, dragPreview] = useDrag(() => ({
         type: DndItem.Item,
         item: {
+            id: itemOpt.value,
             value: itemOpt ,
             itemIdx
         },
         end: (_, monitor) => {
             const dropResul: any = monitor.getDropResult();
-            
             if (dropResul?.isDroped) {
                 setDroped(dropResul.isDroped)
             }
         },
-        collect: monitor => ({
-            isDragging: !!monitor.isDragging()
-          }),
+        collect: monitor => {
+           return {isDragging: !!monitor.isDragging()} 
+          },
       }));
 
+      useEffect(() => {
+        dragPreview(getEmptyImage(), { captureDraggingState: true });
+      }, []);
+
     return (
-        <Li 
+        <StyledDragItem 
            ref={drag}
            $isDroped={droped}
            $isDragging={isDragging}
@@ -58,9 +42,7 @@ const DragItem: React.FC<any> = ({dndItems, itemOpt, itemIdx}) => {
            animate={{x: 0, y: dndItems.length  > 2 && (itemIdx % 2 === 0) ? '-60%' : 0}}
            >
             <img src={itemOpt.img} alt="" />
-            <Span>{itemOpt.value}</Span>
-        </Li>
+            <StyledItemValue>{itemOpt.value}</StyledItemValue>
+        </StyledDragItem>
     )
 };
-
-export default DragItem;

@@ -1,14 +1,14 @@
 import arrowPict from "../../img/arrow.png";
-import { Wrapper } from "./Sequence.styles";
+import { StyledSequence } from "./Sequence.styles";
 
 export default function Sequence({sequence}: any) {
     return(
-            <Wrapper 
+            <StyledSequence 
                 bg={arrowPict} 
                 $sequence={sequence}>
                     <p>
                         {sequence ? 'По возростанию' : 'По убыванию'}
                     </p>
-            </Wrapper>
+            </StyledSequence>
     );
 }

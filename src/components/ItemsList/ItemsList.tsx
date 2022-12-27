@@ -1,12 +1,7 @@
 import React from "react";
-import styled from "styled-components";
+import CustomDragLayer from "../CustomDragLayer/CustomDragLayer";
 
-const Ul = styled.ul`
-display: flex;
-justify-content: center;
-
-padding: 160px 0;
-`;
+import { StyledItemsList } from "./ItemsList.syles";
 
 export default function ItemsList({
         children, 
@@ -17,9 +12,12 @@ export default function ItemsList({
         accept
     }: any) {
     return(
-        <Ul>
-            {dndItems.map((dndItem: any, idx: any) => (
-                React.cloneElement(children, {   
+        <>
+            <CustomDragLayer/>
+
+            <StyledItemsList>
+                {dndItems.map((dndItem: any, idx: any) => (
+                    React.cloneElement(children, {   
                     key: dndItem.value, 
                     itemIdx: idx,
                     itemOpt: dndItem,
@@ -30,6 +28,7 @@ export default function ItemsList({
                     onHandleAcceptIdx: onHandleAcceptIdx
                 })
             ))}
-        </Ul>
+            </StyledItemsList>
+        </>
     );
 }; 

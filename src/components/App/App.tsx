@@ -14,7 +14,7 @@ import Modals from "../Modals/Modals/Modals";
 
 // --------------- Styles imports -------------------------------------
 
-import { ItemsListWrapper } from "./App.styles";
+import { StyledWrapper, StyledItemsListWrapper } from "./App.styles";
 
 // --------------- Types imports --------------------------------------
 
@@ -24,8 +24,8 @@ import { IOptions } from './../Form/Form.types';
 //---------------------------------------------------------------------
 
 export default function App() {
-  const [showMenuModal, setShowMenuModal] = useState<boolean>(true);
-  const [showGameOverModal, setShowGameOverModal] = useState<boolean>(false);
+  const [isOpenMenuModal, setIsOpenMenuModal] = useState<boolean>(true);
+  const [isOpenGameOverModal, setIsOpenGameOverModal] = useState<boolean>(false);
   const [options, setOptions] = useState<IOptions | null>(null);
   const [acceptDropIdx, setAcceptDropIdx] = useState<number>(0);
 
@@ -47,16 +47,16 @@ useEffect(() => {
 
   const submitHundler: SubmitHundlerType = (options) => {
     setOptions(options);
-    setShowMenuModal(prev => !prev);
+    setIsOpenMenuModal(prev => !prev);
   };
 
   const handleShowGameOverModal: HandleShowGameOverModalType = (isShowModal: boolean) => {
-    setShowGameOverModal(isShowModal);
+    setIsOpenGameOverModal(isShowModal);
   };
 
   const reset = () => {
-    setShowMenuModal(true);
-    setShowGameOverModal(false);
+    setIsOpenMenuModal(true);
+    setIsOpenGameOverModal(false);
     setOptions(null);
   };
 
@@ -86,18 +86,23 @@ useEffect(() => {
   return (
         <div onMouseMove={mouseMoveHandler}>
           <SoundBtn/>
+
           <AnimatedBg 
             backGround={options?.theme?.backGroundImg} 
             moveXY={{moveX, moveY}}
           />
+
           <Container>
-            {!showMenuModal && 
-              <>
+            {!isOpenMenuModal && 
+              <StyledWrapper>
+
                 <ItemsList dndItems={options?.dragItems}>
-                  <DragItem />
+                    <DragItem />
                 </ItemsList> 
+
                   <Sequence sequence={options?.sequence} />
-                <ItemsListWrapper bg={options?.theme?.boardImg}>
+
+                <StyledItemsListWrapper bg={options?.theme?.boardImg}>
                 <ItemsList 
                   dndItems={options?.dropItems} 
                   accept={acceptDropIdx} 
@@ -107,14 +112,15 @@ useEffect(() => {
                 >
                   <DropItem />
                 </ItemsList> 
-              </ItemsListWrapper>
-            </>
+              </StyledItemsListWrapper>
+              
+            </StyledWrapper>
           }
         </Container>
 
         <Modals
-          isShowMenuModal={showMenuModal}
-          isShowGameOverModal={showGameOverModal} 
+          isShowMenuModal={isOpenMenuModal}
+          isShowGameOverModal={isOpenGameOverModal} 
           onGameStart={submitHundler}
           onReset={reset}
         />

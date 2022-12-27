@@ -4,6 +4,8 @@ const Div = styled.div`
 padding: 0 15px 0 15px;
 margin: auto;
 
+// -- toDo add mobile
+
 // @media screen and (min-width: 480px) and (max-width: 767px){
 //     width: 480px;
 //   }

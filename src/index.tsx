@@ -47,7 +47,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <DndProvider backend={HTML5Backend}>
+        <DndProvider backend={HTML5Backend} options={{enableMouseEvents: true}}>
           <Glibal />
           <App/>
         </DndProvider>

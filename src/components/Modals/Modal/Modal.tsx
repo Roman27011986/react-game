@@ -11,14 +11,8 @@ left: 50%;
 transform: translate(-50%, -50%);
 
 width: 699px;
-height: 70vh;
 padding: 20px;
 border-radius: 40px;
-
-@media screen and (min-width: 480px) and (max-width: 767px) {
-width: 499px;
-height: 460px;
-}
 
 background-color: white;
 overflow: hidden;

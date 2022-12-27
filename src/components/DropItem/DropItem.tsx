@@ -1,39 +1,11 @@
-import styled from "styled-components";
 import { useDrop } from 'react-dnd';
 import { useState } from "react";
 import { DndItem } from "../../types/dnd";
 
-const LiDrop = styled.li`
-display: flex;
-justify-content: center;
-align-items: center;
-border-radius: 50%;
-background: rgba(0, 0, 0, 0.06);
-box-shadow: inset 0px 4px 25px rgba(0, 0, 0, 0.25);
-width: 100px;
-height: 100px;
-&:not(:last-child) {
-    margin-right: 20px;
-  }
-`
+import { StyledDropItem } from './DropItem.styles';
+import { StyledItemValue } from "../CustomDragLayer/CustomDragLayer.styles";
 
-const Span = styled.span<any>`
-position: absolute;
-
-color: rgba(255, 255, 255, 1);
-
-font-family: Helvetica;
-font-size: 35px;
-font-weight: 800;
--webkit-text-stroke: 1.5px rgba(36, 37, 70, 1);
-`;
-
-const Img = styled.img<any>`
-width: 100%;
-height: 100%;
-`;
-
-const DropItem: React.FC<any> = ({
+export default function DropItem({
         itemOpt, 
         accept, 
         itemIdx, 
@@ -41,7 +13,7 @@ const DropItem: React.FC<any> = ({
         sequence,
         onShowGameOverModal, 
         onHandleAcceptIdx
-    }) => {
+    }: any) {
     const [canDrop, setCanDrop] = useState<any>('');
 
     const [{ isOver }, drop] = useDrop(() => ({
@@ -80,13 +52,11 @@ const DropItem: React.FC<any> = ({
       }),[accept, itemOpt])
 
     return (
-        <LiDrop ref={drop}>
+        <StyledDropItem ref={drop}>
             { canDrop && <>
                 <img src={itemOpt.img} alt="" />
-                <Span>{itemOpt.value}</Span>
+                <StyledItemValue>{itemOpt.value}</StyledItemValue>
             </> }
-        </LiDrop>
+        </StyledDropItem>
     )
 }
-
-export default DropItem;

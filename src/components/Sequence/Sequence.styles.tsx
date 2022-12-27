@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-export const Wrapper = styled(motion.div)<any>`
+export const StyledSequence = styled(motion.div)<any>`
 position: relative;
 display: flex;
 width: 240px;

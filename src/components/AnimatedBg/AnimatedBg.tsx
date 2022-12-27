@@ -1,6 +1,6 @@
 // --------------- Styles import ---------------------------------
 
-import { AnimatedBgStyle } from "./AnimatedBg.styles";
+import { StyledAnimatedBg } from "./AnimatedBg.styles";
 
 // --------------- Types import ----------------------------------
 
@@ -10,10 +10,10 @@ import { IAnimatedBg } from "./AnimatedBg.types";
 
 export default function AnimatedBg({ backGround, moveXY }: IAnimatedBg) {
     return(
-        <AnimatedBgStyle 
+        <StyledAnimatedBg 
             style={{x: moveXY.moveX, y: moveXY.moveY}} 
             $bgImg={backGround}
         >
-        </AnimatedBgStyle>
+        </StyledAnimatedBg>
     )
 }
