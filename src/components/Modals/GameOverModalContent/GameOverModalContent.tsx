@@ -1,7 +1,7 @@
-import modalStarImg from '../../img/modal-star.png';
-import SubmitBtn from "../Buttons/SubmitBtn";
+import modalStarImg from '../../../img/modal-star.png';
+import SubmitBtn from "../../Buttons/SubmitBtn";
 
-import { StyledGameOverContent, StyledTitle, StyledText } from './GameOverContent.styles';
+import { StyledGameOverContent, StyledTitle, StyledText } from './GameOverModalContent.styles';
 
 export default function GameOverContent({onReset}: any) {
     return(

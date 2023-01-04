@@ -45,7 +45,7 @@ export default function CustomDragLayer() {
           initial={{x:initialFileOffset?.x, y:initialFileOffset?.y}} 
           animate={{x:currentFileOffset?.x, y:currentFileOffset?.y}}
           >
-            <img src={item.value.img} alt="" />
+            <img src={item.value.img} alt="" loading="lazy" />
             <StyledItemValue>{item.value.value}</StyledItemValue>
           </StyledDragLayerInner>
         </StyledDragLayerWrapper>

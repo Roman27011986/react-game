@@ -23,10 +23,23 @@ import { IOptions } from './../Form/Form.types';
 
 //---------------------------------------------------------------------
 
+const initialTheme = {
+  backGroundImg: '',
+  boardImg: '',
+  dndItemsImg: [],
+}
+
+const initialOptions = {
+  dragItems: [],
+  dropItems: [],
+  sequence: true,
+  theme: initialTheme
+}
+
 export default function App() {
   const [isOpenMenuModal, setIsOpenMenuModal] = useState<boolean>(true);
   const [isOpenGameOverModal, setIsOpenGameOverModal] = useState<boolean>(false);
-  const [options, setOptions] = useState<IOptions | null>(null);
+  const [options, setOptions] = useState<IOptions>(initialOptions);
   const [acceptDropIdx, setAcceptDropIdx] = useState<number>(0);
 
 useEffect(() => {
@@ -57,7 +70,7 @@ useEffect(() => {
   const reset = () => {
     setIsOpenMenuModal(true);
     setIsOpenGameOverModal(false);
-    setOptions(null);
+    setOptions(initialOptions);
   };
 
   const handleAcceptIdx = () => {
@@ -83,12 +96,13 @@ useEffect(() => {
     y.set((e.pageY - rect.top / 2) / 30);
   }
 
+  const {theme, dragItems, dropItems, sequence} = options;
   return (
         <div onMouseMove={mouseMoveHandler}>
           <SoundBtn/>
 
           <AnimatedBg 
-            backGround={options?.theme?.backGroundImg} 
+            backGround={theme.backGroundImg} 
             moveXY={{moveX, moveY}}
           />
 
@@ -96,17 +110,17 @@ useEffect(() => {
             {!isOpenMenuModal && 
               <StyledWrapper>
 
-                <ItemsList dndItems={options?.dragItems}>
+                <ItemsList dndItems={dragItems}>
                     <DragItem />
                 </ItemsList> 
 
-                  <Sequence sequence={options?.sequence} />
+                <Sequence sequence={sequence} />
 
-                <StyledItemsListWrapper bg={options?.theme?.boardImg}>
+                <StyledItemsListWrapper bg={theme.boardImg}>
                 <ItemsList 
-                  dndItems={options?.dropItems} 
+                  dndItems={dropItems} 
                   accept={acceptDropIdx} 
-                  sequence={options?.sequence}
+                  sequence={sequence}
                   onHandleAcceptIdx={handleAcceptIdx} 
                   onShowGameOverModal={handleShowGameOverModal} 
                 >

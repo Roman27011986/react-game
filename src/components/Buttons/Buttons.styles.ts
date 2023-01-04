@@ -30,7 +30,7 @@ export const ControlBtnStyled = styled(motion.button)`
   cursor: pointer;
 
   color: #4F4B61;
-  background-color: ${({theme}) => theme.colors.yellow};
+  background-color: ${({theme, disabled}) => disabled ? theme.colors.yellow : theme.colors.disabledYellow };
 `;
 
 export const SoundBtnStyled = styled.button<ISoundBtn>`

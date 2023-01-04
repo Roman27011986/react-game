@@ -1,7 +1,7 @@
 import Modal from "../Modal/Modal";
 import GameOverModal from "../GameOverModal/GameOverModal";
 import Form from "../../Form/Form";
-import GameOverContent from "../../GameOverContent/GameOverContent";
+import GameOverModalContent from "../GameOverModalContent/GameOverModalContent";
 
 export default function Modals({isShowMenuModal, isShowGameOverModal, onGameStart, onReset}: any) {
     return(
@@ -15,7 +15,7 @@ export default function Modals({isShowMenuModal, isShowGameOverModal, onGameStar
       { 
         isShowGameOverModal && 
           <GameOverModal>
-            <GameOverContent onReset={onReset}/>
+            <GameOverModalContent onReset={onReset}/>
           </GameOverModal>
       }
         </>

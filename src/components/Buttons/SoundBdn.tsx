@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import soundPict from "../../img/volume.png";
 import useSound from 'use-sound';
-import boopSfx from '../../sounds/slip.mp3';
+import boopSfx from '../../sounds/s-t.mp3';
 import { SoundBtnStyled } from "./Buttons.styles";
 
 export default function SoundBtn() {
-    const [toggleSound, setToggleSoumd] = useState(false);
-    const [play, { stop }] = useSound(boopSfx, {interrupt: true,});
+    const [toggleSound, setToggleSoumd] = useState(true);
+    const [play, { pause }] = useSound(boopSfx, {interrupt: true});
 
     useEffect(() => {
-        toggleSound ? play() : stop();
-    },[toggleSound, play, stop])
+        toggleSound ? play() : pause();
+    },[toggleSound, play, pause])
 
     const handleClick = () => {
         setToggleSoumd(prev => !prev)

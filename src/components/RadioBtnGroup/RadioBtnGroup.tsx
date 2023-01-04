@@ -1,3 +1,4 @@
+import React from "react";
 import 
 { StyledRadioBtnGroup, 
   StyledText, 
@@ -16,7 +17,13 @@ interface IRadioBtnGroup {
   onHandleChange: (e: any) => void
 };
 
-export default function RadioBtnGroup({title, radioBtnSum, checked, width, onHandleChange}: IRadioBtnGroup) {
+function RadioBtnGroup({ 
+    title, 
+    radioBtnSum, 
+    checked, 
+    width, 
+    onHandleChange
+  }: IRadioBtnGroup) {
     return (
         <StyledRadioBtnGroup>
 
@@ -46,3 +53,5 @@ export default function RadioBtnGroup({title, radioBtnSum, checked, width, onHan
         </StyledRadioBtnGroup>
     )
 };
+
+export default React.memo(RadioBtnGroup);

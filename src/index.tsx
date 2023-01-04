@@ -35,6 +35,7 @@ const theme = {
   colors: {
     btnGreen: "rgba(56, 223, 122, 1)",
     yellow: "#FFD748",
+    disabledYellow: "#ffd7485f",
     radioChecked: "#104987"
   }
 };

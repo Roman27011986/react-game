@@ -54,7 +54,7 @@ export default function DropItem({
     return (
         <StyledDropItem ref={drop}>
             { canDrop && <>
-                <img src={itemOpt.img} alt="" />
+                <img src={itemOpt.img} alt="" loading="lazy"/>
                 <StyledItemValue>{itemOpt.value}</StyledItemValue>
             </> }
         </StyledDropItem>

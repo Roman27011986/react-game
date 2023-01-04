@@ -29,7 +29,7 @@ color: #efde59;
 
     width: 100px;
     height: 95px;
-
+    
     background-image: url(${({img}) => img });
     background-size: cover;
     background-position: center;

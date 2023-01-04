@@ -41,7 +41,7 @@ export default function DragItem({dndItems, itemOpt, itemIdx}: any) {
            initial={{x: -1000}} 
            animate={{x: 0, y: dndItems.length  > 2 && (itemIdx % 2 === 0) ? '-60%' : 0}}
            >
-            <img src={itemOpt.img} alt="" />
+            <img src={itemOpt.img} alt="" loading="lazy"/>
             <StyledItemValue>{itemOpt.value}</StyledItemValue>
         </StyledDragItem>
     )

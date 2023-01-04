@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import RadioBtnGroup from "../RadioBtnGroup/RadioBtnGroup";
 import SubmitBtn from "../Buttons/SubmitBtn";
 import ControlBtn from "../Buttons/ControlBtn";
@@ -21,14 +21,6 @@ import boardCoin from "../../img/coins/coin-board.png";
 import coin1 from "../../img/coins/coin1.png";
 import coin2 from "../../img/coins/coin2.png";
 import coin3 from "../../img/coins/coin3.png";
-
-import bgFlower from "../../img/flowers/flower-bg.jpg";
-import boardFlower from "../../img/flowers/flower-board.png";
-import flower1 from "../../img/flowers/flower1.png";
-import flower2 from "../../img/flowers/flower2.png";
-import flower3 from "../../img/flowers/flower3.png";
-import flower4 from "../../img/flowers/flower4.png";
-import flower5 from "../../img/flowers/flower5.png";
 
 import useSound from 'use-sound';
 import clickEffeckt from "../../sounds/click.mp3"
@@ -97,14 +89,15 @@ export default function Form({onGameStart}: FormProps) {
 
     },[theme, valueChecked, itemChecked]);
 
-    const handleItemChange = (e: any) => {
+    const handleItemChange = useCallback((e: any) => {
         play();
         setItemChecked(Number(e.currentTarget.value))
-    }
+    }, [play])
 
-    const handleValueChange = (e: any) => {
+    const handleValueChange = useCallback((e: any) => {
+        play();
         setValueChecked(Number(e.currentTarget.value))
-    }
+    }, [play])
 
     const toggleSequence = () => {
         setSequence(prev => !prev)
